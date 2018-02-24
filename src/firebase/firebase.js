@@ -1,21 +1,21 @@
 import * as firebase from 'firebase';
 
 const prodConfig = {
-  apiKey: YOUR_API_KEY,
-  authDomain: YOUR_AUTH_DOMAIN,
-  databaseURL: YOUR_DATABASE_URL,
-  projectId: YOUR_PROJECT_ID,
-  storageBucket: '',
-  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
+  apiKey: "AIzaSyAxa8dN4oc7LmpZuRNzayXB9aPxOgsYQJo",
+    authDomain: "pathfindercharacter-2d104.firebaseapp.com",
+    databaseURL: "https://pathfindercharacter-2d104.firebaseio.com",
+    projectId: "pathfindercharacter-2d104",
+    storageBucket: "pathfindercharacter-2d104.appspot.com",
+    messagingSenderId: "1012215509633"
 };
 
 const devConfig = {
-  apiKey: YOUR_API_KEY,
-  authDomain: YOUR_AUTH_DOMAIN,
-  databaseURL: YOUR_DATABASE_URL,
-  projectId: YOUR_PROJECT_ID,
-  storageBucket: '',
-  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
+  apiKey: "AIzaSyAxa8dN4oc7LmpZuRNzayXB9aPxOgsYQJo",
+    authDomain: "pathfindercharacter-2d104.firebaseapp.com",
+    databaseURL: "https://pathfindercharacter-2d104.firebaseio.com",
+    projectId: "pathfindercharacter-2d104",
+    storageBucket: "pathfindercharacter-2d104.appspot.com",
+    messagingSenderId: "1012215509633"
 };
 
 const config = process.env.NODE_ENV === 'production'
