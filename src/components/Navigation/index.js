@@ -1,34 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
 import SignOutButton from '../SignOut';
 import * as routes from '../../constants/routes';
 
-const Navigation = (props, { authUser }) =>
-  <div>
-    { authUser
-        ? <NavigationAuth />
-        : <NavigationNonAuth />
-    }
-  </div>
-
-Navigation.contextTypes = {
-  authUser: PropTypes.object,
-};
+const Navigation = ({ authUser }) => 
+	<div>
+		{authUser
+			? <NavigationAuth />
+			: <NavigationNonAuth />
+		}
+	</div>
 
 const NavigationAuth = () =>
-  <ul>
-    <li><Link to={routes.LANDING}>Landing</Link></li>
-    <li><Link to={routes.HOME}>Home</Link></li>
-    <li><Link to={routes.ACCOUNT}>Account</Link></li>
-    <li><SignOutButton /></li>
-  </ul>
+	<nav className="nav nav-pills justify-content-end">
+		<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
+		<Link className="nav-item nav-link" to={routes.HOME}>Home</Link>
+		<Link className="nav-item nav-link" to={routes.ACCOUNT}>Account</Link>
+		<SignOutButton />
+	</nav>
 
 const NavigationNonAuth = () =>
-  <ul>
-    <li><Link to={routes.LANDING}>Landing</Link></li>
-    <li><Link to={routes.SIGN_IN}>Sign In</Link></li>
-  </ul>
+	<nav className="nav nav-pills justify-content-end">
+		<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
+		<Link className="nav-item nav-link" to={routes.SIGN_IN}>Sign In</Link>
+	</nav>
 
-export default Navigation;
+const mapStateToProps = (state) => ({
+	authUser: state.sessionState.authUser,
+})
+
+export default connect(mapStateToProps)(Navigation);

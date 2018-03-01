@@ -1,9 +1,4 @@
 import React, { Component } from 'react'
-import {
-	Link,
-	withRouter,
-} from 'react-router-dom'
-
 import { auth, db } from '../../firebase'
 import * as routes from '../../constants/routes'
 
@@ -40,6 +35,7 @@ class SignUpForm extends Component {
 			.then(authUser => {
 				db.doCreateUser(authUser.uid, username, email)
 					.then(() => {
+						console.log(this.state)
 						this.setState(() => ({ ...INITIAL_STATE }))
 						history.push(routes.HOME)
 					})
@@ -62,6 +58,7 @@ class SignUpForm extends Component {
 			error,
 		} = this.state
 
+		
 		const isInvalid =
 			(passwordOne !== passwordTwo ||
 			passwordOne === '' ||

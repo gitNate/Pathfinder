@@ -1,44 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { firebase } from '../../firebase';
 
 const withAuthentication = (Component) => {
-  class WithAuthentication extends React.Component {
-    constructor(props) {
-      super(props);
+	class WithAuthentication extends React.Component {
+		componentDidMount() {
+			const { onSetAuthUser } = this.props;
 
-      this.state = {
-        authUser: null,
-      };
-    }
+			firebase.auth.onAuthStateChanged(authUser => {
+				authUser
+					? onSetAuthUser(authUser)
+					: onSetAuthUser(null);
+			});
+		}
 
-    getChildContext() {
-      return {
-        authUser: this.state.authUser,
-      };
-    }
+		render() {
+			return (
+				<Component />
+			);
+		}
+	}
 
-    componentDidMount() {
-      firebase.auth.onAuthStateChanged(authUser => {
-        authUser
-          ? this.setState(() => ({ authUser }))
-          : this.setState(() => ({ authUser: null }));
-      });
-    }
+	const mapDispatchToProps = (dispatch) => ({
+		onSetAuthUser: (authUser) => dispatch({ type: 'AUTH_USER_SET', authUser }),
+	});
 
-    render() {
-      return (
-        <Component />
-      );
-    }
-  }
-
-  WithAuthentication.childContextTypes = {
-    authUser: PropTypes.object,
-  };
-
-  return WithAuthentication;
+	return connect(null, mapDispatchToProps)(WithAuthentication);
 }
 
 export default withAuthentication;
