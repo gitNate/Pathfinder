@@ -4,37 +4,35 @@ import { Link } from 'react-router-dom'
 
 import SignOutButton from '../SignOutButton'
 import * as routes from '../../constants/routes'
-import { Collapse } from 'react-bootstrap'
 
 class Navigation extends Component {
-
 	constructor(props) {
 		super(props)
 		this.state = {
-			open: false
+			open: true
 		}
 	}
 
+	toggleMenu = () => {
+		this.setState({ open: !this.state.open })
+	}
+
 	render() {
+		const { authUser } = this.props
 		return (
-			<nav className="navbar navbar-expand-lg navbar-light bg-light">
-				<div className="navbar-brand" onClick={() => this.setState({ open: !this.state.open})}>RPG App</div>
-				<Collapse in={this.state.open} id="navbarNav">
-					<div className="collapse-smooth-animation">
-					{this.props.authUser
-						? <NavigationAuth />
-						: <NavigationNonAuth />
-					}
-					</div>
-				</Collapse>
-			</nav>
+			<div>
+				{authUser
+					? <NavigationAuth />
+					: <NavigationNonAuth />
+				}
+			</div>
 		)
 	}
 }
 
 const NavigationAuth = () =>
-	<ul className="navbar-nav">
-		<li className="nav-item active">
+	<ul className="nav justify-content-end">
+		<li className="nav-item">
 			<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
 		</li>
 		<li className="nav-item">
