@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { auth, db } from '../../firebase'
-import * as routes from '../../constants/routes'
+import { auth, db } from '../../../firebase'
+import * as routes from '../../../constants/routes'
 
 const updateByPropertyName = (propertyName, value) => () => ({
 	[propertyName]: value,

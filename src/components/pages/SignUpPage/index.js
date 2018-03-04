@@ -2,7 +2,7 @@ import React from 'react'
 import {
 	withRouter,
 } from 'react-router-dom'
-import SignUpForm from './SignUpForm'
+import SignUpForm from '../../forms/SignUpForm'
 
 const SignUpPage = ({ history }) =>
 	<div>

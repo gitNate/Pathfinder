@@ -1,0 +1,1 @@
+export const CHARACTERS_GET_ALL = 'CHARACTER_GET_ALL'

@@ -17,6 +17,7 @@ const NavigationAuth = () =>
 	<nav className="nav nav-pills justify-content-end">
 		<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
 		<Link className="nav-item nav-link" to={routes.HOME}>Home</Link>
+		<Link className="nav-item nav-link" to={routes.CHARACTERS}>Characters</Link>
 		<Link className="nav-item nav-link" to={routes.ACCOUNT}>Account</Link>
 		<SignOutButton />
 	</nav>
