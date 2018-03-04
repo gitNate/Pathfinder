@@ -15,6 +15,7 @@ import AccountPage from '../pages/AccountPage'
 import withAuthentication from '../Session/withAuthentication'
 import * as routes from '../../constants/routes'
 
+import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
 const App = () =>

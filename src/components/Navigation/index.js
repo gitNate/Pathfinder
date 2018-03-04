@@ -1,32 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
-import SignOutButton from '../SignOut';
-import * as routes from '../../constants/routes';
+import SignOutButton from '../SignOutButton'
+import * as routes from '../../constants/routes'
+import { Collapse } from 'react-bootstrap'
 
-const Navigation = ({ authUser }) => 
-	<div>
-		{authUser
-			? <NavigationAuth />
-			: <NavigationNonAuth />
+class Navigation extends Component {
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			open: false
 		}
-	</div>
+	}
+
+	render() {
+		return (
+			<nav className="navbar navbar-expand-lg navbar-light bg-light">
+				<div className="navbar-brand" onClick={() => this.setState({ open: !this.state.open})}>RPG App</div>
+				<Collapse in={this.state.open} id="navbarNav">
+					<div className="collapse-smooth-animation">
+					{this.props.authUser
+						? <NavigationAuth />
+						: <NavigationNonAuth />
+					}
+					</div>
+				</Collapse>
+			</nav>
+		)
+	}
+}
 
 const NavigationAuth = () =>
-	<nav className="nav nav-pills justify-content-end">
-		<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
-		<Link className="nav-item nav-link" to={routes.HOME}>Home</Link>
-		<Link className="nav-item nav-link" to={routes.CHARACTERS}>Characters</Link>
-		<Link className="nav-item nav-link" to={routes.ACCOUNT}>Account</Link>
-		<SignOutButton />
-	</nav>
+	<ul className="navbar-nav">
+		<li className="nav-item active">
+			<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
+		</li>
+		<li className="nav-item">
+			<Link className="nav-item nav-link" to={routes.HOME}>Home</Link>
+		</li>
+		<li className="nav-item">
+			<Link className="nav-item nav-link" to={routes.CHARACTERS}>Characters</Link>
+		</li>
+		<li className="nav-item">
+			<Link className="nav-item nav-link" to={routes.ACCOUNT}>Account</Link>
+		</li>
+		<li className="nav-item">
+			<SignOutButton />
+		</li>
+	</ul>
 
 const NavigationNonAuth = () =>
-	<nav className="nav nav-pills justify-content-end">
+	<div className="navbar-nav">
 		<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
 		<Link className="nav-item nav-link" to={routes.SIGN_IN}>Sign In</Link>
-	</nav>
+	</div>
 
 const mapStateToProps = (state) => ({
 	authUser: state.sessionState.authUser,
