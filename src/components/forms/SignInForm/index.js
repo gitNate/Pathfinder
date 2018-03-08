@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
 
 import { auth } from '../../../firebase'
 import * as routes from '../../../constants/routes'
@@ -16,7 +14,7 @@ const updateByPropertyName = (propertyName, value) => () => ({
 
 class SignInForm extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = { ...INITIAL_STATE };
 	}
 
@@ -24,11 +22,11 @@ class SignInForm extends Component {
 		const {
 			email,
 			password,
-		} = this.state;
+		} = this.state
 
 		const {
 			history,
-		} = this.props;
+		} = this.props
 
 		auth.doSignInWithEmailAndPassword(email, password)
 			.then(() => {
@@ -37,9 +35,8 @@ class SignInForm extends Component {
 			})
 			.catch(error => {
 				this.setState(updateByPropertyName('error', error));
-			});
-
-		event.preventDefault();
+			})
+		event.preventDefault()
 	}
 
 	render() {

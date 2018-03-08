@@ -35,7 +35,7 @@ class SignUpForm extends Component {
 			.then(authUser => {
 				db.doCreateUser(authUser.uid, username, email)
 					.then(() => {
-						console.log(this.state)
+						// reset the form
 						this.setState(() => ({ ...INITIAL_STATE }))
 						history.push(routes.HOME)
 					})

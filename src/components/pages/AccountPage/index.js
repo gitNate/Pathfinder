@@ -8,12 +8,23 @@ import withAuthorization from '../../Session/withAuthorization'
 class AccountPage extends Component {
 	componentDidMount() {
 	}
-	
+
 	render() {
-		const { authUser } = this.props
-		return(
+		const { authUser, userEmail, userName } = this.props
+		console.log('AccountPage', this.props)
+		return (
 			<div>
-				<h1>Account: {authUser.email}</h1>
+				<h1>Account:</h1>
+				<div className="form-group">
+					<label className="control-label col-sm-2">Email:</label>
+					<div>
+						<p>{userEmail}</p>
+					</div>
+				</div>
+				<div className="form-group">
+					<label>Name:</label>
+					<input type="text" className="form-control" id="name">{userName}</input>
+				</div>
 				<PasswordChangeForm />
 			</div>
 		)
@@ -22,6 +33,8 @@ class AccountPage extends Component {
 
 const mapStateToProps = (state) => ({
 	authUser: state.sessionState.authUser,
+	userName: state.userState.username,
+	userEmail: state.userState.email,
 })
 
 const authCondition = (authUser) => !!authUser

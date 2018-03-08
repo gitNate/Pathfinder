@@ -10,7 +10,7 @@ class PasswordForgetPage extends Component {
 	render() {
 		return (
 			<div>
-				<h1>PasswordForget</h1>
+				<h1>Reset Your Password</h1>
 				<PasswordForgetForm />
 			</div>
 		)

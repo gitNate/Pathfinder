@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import SignOutButton from '../SignOutButton'
+import SignInButton from '../SingInButton'
 import * as routes from '../../constants/routes'
 
 class Navigation extends Component {
@@ -50,10 +51,14 @@ const NavigationAuth = () =>
 	</ul>
 
 const NavigationNonAuth = () =>
-	<div className="navbar-nav">
-		<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
-		<Link className="nav-item nav-link" to={routes.SIGN_IN}>Sign In</Link>
-	</div>
+	<ul className="nav justify-content-end">
+		<li className="nav-item">
+			<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
+		</li>
+		<li className="nav-item">
+			<SignInButton />
+		</li>
+	</ul>
 
 const mapStateToProps = (state) => ({
 	authUser: state.sessionState.authUser,
