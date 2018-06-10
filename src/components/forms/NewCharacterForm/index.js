@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { auth } from '../../../firebase'
+import { compose } from 'recompose';
+
+import authCondition from '../../Session/authCondition';
+import withAuthorization from '../../Session/withAuthorization';
 
 const updateByPropertyName = (propertyName, value) => () => (
 	{ [propertyName]: value, }
@@ -56,5 +59,8 @@ class NewCharacterForm extends Component {
 	}
 }
 
-export default NewCharacterForm
+export default compose(
+	withAuthorization(authCondition)
+)(NewCharacterForm)
+
 

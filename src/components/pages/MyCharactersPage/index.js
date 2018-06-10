@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
-import { Collapse, Glyphicon } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
-import withAuthorization from '../../Session/withAuthorization'
-import { db } from '../../../firebase'
-import NewCharacterForm from '../../forms/NewCharacterForm'
+import withAuthorization from '../../Session/withAuthorization';
+import authCondition from '../../Session/authCondition';
+
+import NewCharacterForm from '../../forms/NewCharacterForm';
 
 const styles = {
 	divStyle : {
@@ -75,8 +75,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	onSetCharacters: (characters) => dispatch({ type: 'CHARACTERS_SET', characters }),
 });
-
-const authCondition = (authUser) => !!authUser;
 
 export default compose(
 	withAuthorization(authCondition),

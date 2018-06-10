@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import withAuthorization from '../../Session/withAuthorization';
-import { db } from '../../../firebase'
+import authCondition from '../../Session/authCondition';
+
 
 class HomePage extends Component {
 	componentDidMount() {
@@ -26,8 +27,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 
 });
-
-const authCondition = (authUser) => !!authUser;
 
 export default compose(
 	withAuthorization(authCondition),

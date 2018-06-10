@@ -8,7 +8,6 @@ const withAuthentication = (Component) => {
 	class WithAuthentication extends React.Component {
 		componentDidMount() {
 			const { onSetAuthUser } = this.props;
-
 			firebase.auth.onAuthStateChanged(authUser => {
 				authUser
 					? onSetAuthUser(authUser)
@@ -26,7 +25,7 @@ const withAuthentication = (Component) => {
 	const mapDispatchToProps = (dispatch) => ({
 		onSetAuthUser: (authUser) => dispatch({ type: authActions.authUserSet, authUser }),
 	});
-
+	
 	return connect(null, mapDispatchToProps)(WithAuthentication);
 }
 

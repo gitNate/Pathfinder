@@ -34,9 +34,6 @@ class Navigation extends Component {
 const NavigationAuth = () =>
 	<ul className="nav justify-content-end">
 		<li className="nav-item">
-			<Link className="nav-item nav-link" to={routes.LANDING}>Landing</Link>
-		</li>
-		<li className="nav-item">
 			<Link className="nav-item nav-link" to={routes.HOME}>Home</Link>
 		</li>
 		<li className="nav-item">

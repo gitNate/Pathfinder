@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
-import withAuthorization from '../../Session/withAuthorization'
+import withAuthorization from '../../Session/withAuthorization';
+import authCondition from '../../Session/authCondition';
 
 class CharacterSheetPage extends Component {
 	componentDidMount() {
@@ -21,8 +22,6 @@ const mapStateToProps = (state) => ({
 	//authUser: state.sessionState.authUser,
 	//loadCharacter Sheet Here
 })
-
-const authCondition = (authUser) => !!authUser
 
 export default compose(
 	withAuthorization(authCondition),

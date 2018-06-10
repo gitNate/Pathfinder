@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
-import PasswordChangeForm from '../../forms/PasswordChangeForm'
-import withAuthorization from '../../Session/withAuthorization'
+import PasswordChangeForm from '../../forms/PasswordChangeForm';
+import withAuthorization from '../../Session/withAuthorization';
+import authCondition from '../../Session/authCondition';
 
 class AccountPage extends Component {
 	componentDidMount() {
 	}
 
 	render() {
-		const { authUser, userEmail, userName } = this.props
+		const { userEmail, userName } = this.props
 		console.log('AccountPage', this.props)
 		return (
 			<div>
@@ -32,12 +33,9 @@ class AccountPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	authUser: state.sessionState.authUser,
 	userName: state.userState.username,
 	userEmail: state.userState.email,
 })
-
-const authCondition = (authUser) => !!authUser
 
 export default compose(
 	withAuthorization(authCondition),
